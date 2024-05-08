@@ -5,7 +5,7 @@ const enquirySchema = new mongoose.Schema({
   email: { type: String, required: true },
   phone_number: { type: String, required: true },
   destination: { type: String, required: true },
-  intrest: { type: String, required: true },
+  interest: { type: String, required: true },
   duration: { type: Number, required: true },
   travelDate: { type: Date, required: true },
   numberOfTravelers: { type: Number, required: true },

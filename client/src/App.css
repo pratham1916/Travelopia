@@ -12,7 +12,10 @@
     font-family: "Roboto Condensed", sans-serif;
 }
 body {
-    background-color: #e3e6f3 !important;
+    background-color: #eff2ff !important;
+}
+section{
+    margin-top: 50px;
 }
 .btn {
     display: inline-block;

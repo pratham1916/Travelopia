@@ -65,7 +65,7 @@ const CreateTrip = () => {
             <div className="create-trip-container">
                 <h1 className="form-title">Create Your Trip</h1>
                 <p className="form-description">
-                    Fill out the form below to send us your trip enquiry. A representative will get back to you as soon as possible to confirm the details and organize your amazing journey.
+                    Submit your trip enquiry below, and we'll quickly coordinate your journey details.
                 </p>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
@@ -80,29 +80,32 @@ const CreateTrip = () => {
                     <div className="input-group">
                         <select name="destination" required onChange={handleChange}>
                             <option value="">Select a Destination</option>
-                            <option value="paris">Paris</option>
-                            <option value="new_york">New York</option>
-                            <option value="tokyo">Tokyo</option>
-                            <option value="london">London</option>
-                            <option value="bangkok">Bangkok</option>
-                            <option value="sydney">Sydney</option>
-                            <option value="cape_town">Cape Town</option>
-                            <option value="rome">Rome</option>
-                            <option value="mount_fuji">Mount Fuji</option>
-                            <option value="silicon_valley">Silicon Valley</option>
+                            <option value="Paris">Paris</option>
+                            <option value="New York">New York</option>
+                            <option value="Tokyo">Tokyo</option>
+                            <option value="London">London</option>
+                            <option value="Bangkok">Bangkok</option>
+                            <option value="Sydney">Sydney</option>
+                            <option value="Cape Town">Cape Town</option>
+                            <option value="Rome">Rome</option>
+                            <option value="Mount Fuji">Mount Fuji</option>
+                            <option value="Japan">Japan</option>
+                            <option value="North India">North India</option>
+                            <option value="Bali">Bali</option>
+                            <option value="South India">South India</option>
+                            <option value="New York">New York</option>
+                            <option value="France">France</option>
                         </select>
                     </div>
                     <div className="input-group">
                         <select name="interest" required onChange={handleChange}>
                             <option value="">Select an Interest</option>
-                            <option value="culture">Culture</option>
-                            <option value="food">Food</option>
-                            <option value="nature">Nature</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="forest">Forests</option>
-                            <option value="mountains">Mountains</option>
-                            <option value="tech">High Tech Cities</option>
-                            <option value="beaches">Beaches</option>
+                            <option value="Advanture and Outdoor">Advanture and Outdoor</option>
+                            <option value="Beaches">Beaches</option>
+                            <option value="Heritage and Culture">Heritage and Culture</option>
+                            <option value="Nature and Landscape">Nature and Landscape</option>
+                            <option value="Wildlife and Safaris">Wildlife and Safaris</option>
+                            <option value="Wine and Food">Wine and Food</option>
                         </select>
                     </div>
                     <div className="input-group">

@@ -1,8 +1,9 @@
 .enquiries-section {
-    margin: 80px 6%;
+    margin: 70px 6%;
 }
-.enquiry-banner{
-    height: 50vh;
+
+.enquiry-banner {
+    height: 60vh;
     background-image: url("../images/mountain-banner.jpg");
     background-position: center;
     background-size: cover;
@@ -19,16 +20,35 @@
 }
 
 .enquiry-card {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.enquiry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
 .enquiry-card p {
     margin: 10px 0;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #333;
+    font-size: 14px;
 }
 
 .enquiry-card strong {
     color: #555;
+    font-weight: 600;
+}
+
+.enquiry-card a {
+    color: #1890ff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.enquiry-card a:hover {
+    color: #40a9ff;
 }

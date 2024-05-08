@@ -49,7 +49,7 @@ const Login: React.FC = () => {
       <div className="right-container">
         <h1 className="title">Welcome to Global Adventures: Your Gateway to the World</h1>
         <p className="description">
-          Sign in with your member ID and password to access exclusive travel deals, book your trips, and explore new destinations. Your next adventure starts here.
+          Sign in with your Email ID and password to access exclusive travel deals, book your trips, and explore new destinations. Your next adventure starts here.
         </p>
         <Form form={form} onFinish={onFinish}>
           <Form.Item

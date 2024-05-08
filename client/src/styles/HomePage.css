@@ -1,17 +1,18 @@
 .home {
     position: relative;
     width: 100%;
-    min-height: 95vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 0 8%;
 }
-.home::before{
+
+.home::before {
     z-index: 777;
     content: "";
     position: absolute;
-    background-color: rgba(50, 50, 50, 0.6);
+    background-color: rgba(50, 50, 50, 0.7);
     width: 100%;
     height: 100%;
     top: 0;
@@ -40,7 +41,7 @@
 .createTrip {
     padding: 8px 15px;
     color: white;
-    background-color:#ff4000;
+    background-color: #ff4000;
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
@@ -50,7 +51,6 @@
 .media-icons {
     z-index: 888;
     position: absolute;
-    top: 200px;
     right: 30px;
     display: flex;
     flex-direction: column;
@@ -68,8 +68,8 @@
     transform: scale(1.3);
 }
 
-.home video{
-    z-index: 000;
+.home video {
+    z-index: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -78,17 +78,17 @@
     object-fit: cover;
 }
 
-.slider-navigation{
+.slider-navigation {
     z-index: 888;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:20px ;
+    gap: 20px;
     transform: translateY(80px);
 }
 
-.slider-navigation .nav-btn{
+.slider-navigation .nav-btn {
     width: 7px;
     height: 7px;
     background-color: black;
@@ -97,14 +97,48 @@
     transition: 0.3s ease;
     margin-top: 70px;
 }
-.slider-navigation .nav-btn:hover{
+
+.slider-navigation .nav-btn:hover {
     transform: scale(1.2);
+}
+
+.expert-picks {
+    width: 100%;
+    padding: 0 8%;
+    text-align: center;
+    margin: 50px 0 0;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card {
+    width: 280px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card-content img {
+    width: 100%;
+    border-radius: 10px;
 }
 
 @media (max-width: 1024px) {
     .home .content {
         width: 80%;
     }
+
     .home .content h1 {
         font-size: 3rem;
         line-height: 60px;
@@ -115,23 +149,27 @@
     .home {
         padding: 0 5%;
     }
+
     .home .content {
         width: 90%;
     }
+
     .home .content h1 {
         font-size: 2rem;
         line-height: 50px;
     }
+
     .createTrip {
         font-size: 1rem;
     }
+
     .media-icons {
         flex-direction: row;
         justify-content: center;
         align-items: center;
         width: 100%;
-        top: 585px;
-        left: 0px;
+        bottom: 10px;
+        left: 0;
     }
 }
 
@@ -139,11 +177,24 @@
     .home {
         padding: 0 3%;
     }
+
     .home .content {
         width: 100%;
     }
+
     .home .content h1 {
         font-size: 1.5rem;
         line-height: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
     }
 }

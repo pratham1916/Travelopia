@@ -61,7 +61,6 @@ const Enquiries: React.FC = () => {
         <Spin size="large" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
       ) : (
         <>
-
           <Row gutter={[16, 16]} className='enquiries-row'>
             {currentEnquiries.map((enquiry) => (
               <Col key={enquiry._id} xs={24} sm={12} lg={6}>

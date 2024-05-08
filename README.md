@@ -11,7 +11,7 @@ This section lists the technologies used in this project. Detail each technology
 - **Frontend:** React, TypeScript, Antd Design
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
-- 
+  
 ## Getting Started
 These instructions will guide you through getting a copy of the project up and running on your local machine for development and testing purposes.
 

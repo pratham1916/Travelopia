@@ -47,15 +47,29 @@
     margin-bottom: 20px;
 }
 
-.input,
-.button {
+.input {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+.login-form-btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    font-weight: 600;
+    border: 1px solid red;
+    margin-top: 20px;
+}
 
-.button {
-    margin-top: 30px;
+.form-button {
+    width: 100%;
+    color: black;
+    font-weight: 600;
+    border: 1px solid red;
 }
 
 .signin-register-link {
@@ -63,14 +77,9 @@
     margin-top: 20px;
 }
 
-.signin-nav-link {
-    margin-left: 5px;
-    color: #007BFF;
-    text-decoration: none;
-}
-
-.signin-nav-link:hover {
-    text-decoration: underline;
+.signup-already-account {
+    text-align: center;
+    font-weight: 600;
 }
 
 @media (max-width: 1200px) {

@@ -1,8 +1,9 @@
-import { Form, Input, notification } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 import registerImage from "../images/register.jpg";
 import "../styles/login-register.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react';
 
 interface RegisterFormValues {
   fullname: string;
@@ -14,15 +15,16 @@ interface RegisterFormValues {
 const Register: React.FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: RegisterFormValues) => {
+    setLoading(true);
     try {
       const response = await axios.post('https://travelopia-1sw7.onrender.com/register', {
         fullname: values.fullname,
         email: values.email,
         password: values.password,
         phone_number: values.phone_number,
-        
       });
       if (response.status === 201) {
         notification.success({
@@ -32,11 +34,12 @@ const Register: React.FC = () => {
         navigate('/login');
       }
     } catch (error: any) {
-        notification.error({
-          message: 'Registration Failed',
-          description: error.response.data.message || 'An error occurred during registration.'
-        });
+      notification.error({
+        message: 'Registration Failed',
+        description: error.response?.data?.message || 'An error occurred during registration.'
+      });
     }
+    setLoading(false);
   };
 
   return (
@@ -74,13 +77,16 @@ const Register: React.FC = () => {
           >
             <Input.Password className="input" placeholder='Password' />
           </Form.Item>
-
-          <p className="signup-already-account">Already have an account?
-              <Link to="/login"> Log In</Link>
-          </p>
           <Form.Item>
-            <button className="button btn">Register</button>
+            <Button className="form-button" loading={loading} htmlType="submit">
+              Register
+            </Button>
           </Form.Item>
+
+          <p className="signup-already-account">Already have an account ? </p>
+
+          <Link to="/login" className='login-form-btn'> Log In</Link>
+          
         </Form>
       </div>
     </div>

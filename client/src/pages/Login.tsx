@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Input, notification } from 'antd';
+import React, { useState } from 'react';
+import { Button, Form, Input, notification } from 'antd';
 import loginImage from "../images/login.jpg";
 import "../styles/login-register.css";
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,8 +13,10 @@ interface LoginFormValues {
 const Login: React.FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: LoginFormValues) => {
+    setLoading(true);
     try {
       const response = await axios.post('https://travelopia-1sw7.onrender.com/login', {
         email: values.email,
@@ -36,6 +38,7 @@ const Login: React.FC = () => {
         description: error.response.data.message || 'An error occurred during login.'
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -61,12 +64,14 @@ const Login: React.FC = () => {
           >
             <Input.Password className="input" placeholder="Enter your password" />
           </Form.Item>
-          <p> Don't have an account?
-            <Link to="/register">Register now</Link>
-          </p>
           <Form.Item>
-            <button className="button btn"> Login </button>
+            <Button className="form-button" loading={loading} htmlType="submit"> Login </Button>
           </Form.Item>
+
+          <p className="signup-already-account">Don't have an account?</p>
+
+          <Link className='login-form-btn' to="/register">Register now</Link>
+          
         </Form>
       </div>
     </div>

@@ -56,7 +56,7 @@ const Navbar = () => {
                         
                         <button className="navbar-login-button" onClick={handleLogout}>Logout</button>
                         <UserOutlined className="profile-icon" onClick={showModal} style={{ fontSize: '18px', cursor: 'pointer', marginRight: '10px',backgroundColor:"white", padding:"8px 8px",borderRadius:"50%" }} />
-                        <Modal title="Profile" visible={isModalVisible} onCancel={handleCancel} footer={null}>
+                        <Modal title="Profile" open={isModalVisible} onCancel={handleCancel} footer={null}>
                             <p><strong>Name:</strong> {user.fullname}</p>
                             <p><strong>Email:</strong> {user.email}</p>
                         </Modal>

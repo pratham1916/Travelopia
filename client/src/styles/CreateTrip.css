@@ -7,7 +7,7 @@
 
 .create-trip-container {
     max-width: 450px;
-    margin-left: 10%;
+    margin: 65px 10%;
     padding: 15px 30px;
     border-radius: 20px;
     background: #36312a;
@@ -15,67 +15,78 @@
     color: #fff;
 }
 
-.form-title {
-    color: #fff;
+.form-title, .form-description {
     text-align: center;
+}
+
+.form-title {
     margin-bottom: 10px;
 }
 
 .form-description {
-    color: #ccc;
-    text-align: center;
     margin-bottom: 20px;
     font-size: 14px;
 }
 
-.input-group {
-    margin-bottom: 10px;
+.input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
 }
 
-.create-trip-container input,
-.create-trip-container select,
-.create-trip-container textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #fff;
-    color: #333;
-}
-
-.create-trip-container input[type="date"] {
-    padding: 8px;
+.input-row > .ant-form-item {
+    flex: 1 1 180px;
 }
 
 .submit-btn {
     width: 100%;
+    border: 0;
+    border-radius: 10px;
+}
+
+.ant-form-item {
+    margin-bottom: 16px;
+}
+
+.ant-input, .ant-picker, .ant-select-selector {
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+}
+
+.ant-select-arrow {
+    color: #ffffff;
+}
+
+.ant-select-selection-placeholder, .ant-input::placeholder, .ant-picker-input::placeholder {
+    color: #bfbfbf;
+}
+
+.ant-input-textarea, .ant-input-textarea > textarea {
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
     .create-trip-container {
+        max-width: 90%;
         padding: 15px 20px;
     }
-
-    .form-description {
-        font-size: 12px;
+    .form-title, .form-description {
+        font-size: smaller; 
+    }
+    .input-row {
+        gap: 2px; 
     }
 }
 
 @media (max-width: 480px) {
     .create-trip-container {
-        padding: 10px 15px;
-        margin: 0;
+        max-width: 100%; 
+        padding: 15px 10px;
     }
-
-    .form-description {
-        font-size: 11px;
-    }
-
-    .input-group {
-        margin-bottom: 8px;
-    }
-
     .submit-btn {
-        font-size: 14px;
+        font-size: 14px; 
     }
 }

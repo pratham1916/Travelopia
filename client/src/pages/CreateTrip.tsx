@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { notification } from 'antd';
+import { Form, Input, Button, Select, DatePicker, notification } from 'antd';
 import '../styles/CreateTrip.css';
+import moment from 'moment';
 
 interface FormValues {
     fullName: string;
@@ -10,54 +11,44 @@ interface FormValues {
     destination: string;
     interest: string;
     duration: string;
-    travelDate: string;
+    travelDate: moment.Moment;
     numberOfTravelers: string;
     comment?: string;
 }
 
-const CreateTrip = () => {
-    const [formData, setFormData] = useState<FormValues>({
-        fullName: '',
-        email: '',
-        phone_number: '',
-        destination: '',
-        interest: '',
-        duration: '',
-        travelDate: '',
-        numberOfTravelers: '',
-        comment: '',
-    });
+const { Option } = Select;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
+const CreateTrip: React.FC = () => {
+    const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = async (values: FormValues) => {
         const token = localStorage.getItem('token');
+        const formattedValues = {
+            ...values,
+            travelDate: values.travelDate.format('YYYY-MM-DD'),
+        };
 
         try {
-            const response = await axios.post('https://travelopia-1sw7.onrender.com/enquiry', formData, {
+            setLoading(true);
+            const response = await axios.post('https://travelopia-1sw7.onrender.com/enquiry', formattedValues, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': token
-                }
+                    'Authorization': token,
+                },
             });
             notification.success({
                 message: 'Success',
-                description: response.data.message
+                description: response.data.message,
             });
+            form.resetFields();
         } catch (error: any) {
-            console.log(error);
-
             notification.error({
                 message: 'Error',
-                description: error.response?.data.message || 'Failed to submit enquiry.'
+                description: error.response?.data.message || 'Failed to submit enquiry.',
             });
         }
+        setLoading(false);
     };
 
     return (
@@ -67,82 +58,93 @@ const CreateTrip = () => {
                 <p className="form-description">
                     Submit your trip enquiry below, and we'll quickly coordinate your journey details.
                 </p>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-                        <input name="fullName" placeholder="Full Name" required type="text" onChange={handleChange} />
+                <Form form={form} onFinish={handleSubmit}>
+                    <div className="input-row">
+                        <Form.Item name="fullName" rules={[{ required: true, message: 'Please input your full name!' }]}>
+                            <Input placeholder="Full Name" />
+                        </Form.Item>
+                        <Form.Item name="email" rules={[{ type: 'email', message: 'The input is not valid E-mail!' }, { required: true, message: 'Please input your E-mail!' }]}>
+                            <Input type="email" placeholder="Email Address" />
+                        </Form.Item>
                     </div>
-                    <div className="input-group">
-                        <input name="email" type="email" placeholder="Email Address" required onChange={handleChange} />
+                    <div className="input-row">
+                        <Form.Item name="phone_number" rules={[{ required: true, message: 'Please input your phone number!' }]}>
+                            <Input placeholder="Phone Number (10 digits)" />
+                        </Form.Item>
+                        <Form.Item name="destination" rules={[{ required: true, message: 'Please select your destination!' }]}>
+                            <Select placeholder="Select a Destination">
+                                <Option value="">Select a Destination</Option>
+                                <Option value="Paris">Paris</Option>
+                                <Option value="New York">New York</Option>
+                                <Option value="Tokyo">Tokyo</Option>
+                                <Option value="London">London</Option>
+                                <Option value="Bangkok">Bangkok</Option>
+                                <Option value="Sydney">Sydney</Option>
+                                <Option value="Cape Town">Cape Town</Option>
+                                <Option value="Rome">Rome</Option>
+                                <Option value="Mount Fuji">Mount Fuji</Option>
+                                <Option value="Japan">Japan</Option>
+                                <Option value="North India">North India</Option>
+                                <Option value="Bali">Bali</Option>
+                                <Option value="South India">South India</Option>
+                                <Option value="New York">New York</Option>
+                                <Option value="France">France</Option>
+                            </Select>
+                        </Form.Item>
                     </div>
-                    <div className="input-group">
-                        <input name="phone_number" placeholder="Phone Number (10 digits)" required type="tel" onChange={handleChange} />
+                    <div className="input-row">
+                        <Form.Item name="interest" rules={[{ required: true, message: 'Please select your interest!' }]}>
+                            <Select placeholder="Select an Interest">
+                            <Option value="">Select an Interest</Option>
+                                <Option value="Advanture and Outdoor">Advanture and Outdoor</Option>
+                                <Option value="Beaches">Beaches</Option>
+                                <Option value="Heritage and Culture">Heritage and Culture</Option>
+                                <Option value="Nature and Landscape">Nature and Landscape</Option>
+                                <Option value="Wildlife and Safaris">Wildlife and Safaris</Option>
+                                <Option value="Wine and Food">Wine and Food</Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item name="duration" rules={[{ required: true, message: 'Please select duration!' }]}>
+                            <Select placeholder="Select Duration (days)">
+                            <Option value="">Select Duration (days)</Option>
+                                <Option value="3">3 Days</Option>
+                                <Option value="5">5 Days</Option>
+                                <Option value="7">7 Days</Option>
+                                <Option value="10">10 Days</Option>
+                                <Option value="14">14 Days</Option>
+                            </Select>
+                        </Form.Item>
                     </div>
-                    <div className="input-group">
-                        <select name="destination" required onChange={handleChange}>
-                            <option value="">Select a Destination</option>
-                            <option value="Paris">Paris</option>
-                            <option value="New York">New York</option>
-                            <option value="Tokyo">Tokyo</option>
-                            <option value="London">London</option>
-                            <option value="Bangkok">Bangkok</option>
-                            <option value="Sydney">Sydney</option>
-                            <option value="Cape Town">Cape Town</option>
-                            <option value="Rome">Rome</option>
-                            <option value="Mount Fuji">Mount Fuji</option>
-                            <option value="Japan">Japan</option>
-                            <option value="North India">North India</option>
-                            <option value="Bali">Bali</option>
-                            <option value="South India">South India</option>
-                            <option value="New York">New York</option>
-                            <option value="France">France</option>
-                        </select>
+                    <div className="input-row">
+                        <Form.Item  name="travelDate" rules={[{ required: true, message: 'Please choose the travel date!' }]}>
+                            <DatePicker style={{width:"100%"}} format="YYYY-MM-DD" />
+                        </Form.Item>
+                        <Form.Item name="numberOfTravelers" rules={[{ required: true, message: 'Please select the number of travelers!' }]}>
+                            <Select placeholder="Number of Travelers">
+                                <Option value="">Number of Travelers</Option>
+                                <Option value="1">1 Traveler</Option>
+                                <Option value="2">2 Travelers</Option>
+                                <Option value="3">3 Travelers</Option>
+                                <Option value="4">4 Travelers</Option>
+                                <Option value="5">5 Travelers</Option>
+                                <Option value="6">6 Travelers</Option>
+                                <Option value="7+">7+ Travelers</Option>
+                            </Select>
+                        </Form.Item>
                     </div>
-                    <div className="input-group">
-                        <select name="interest" required onChange={handleChange}>
-                            <option value="">Select an Interest</option>
-                            <option value="Advanture and Outdoor">Advanture and Outdoor</option>
-                            <option value="Beaches">Beaches</option>
-                            <option value="Heritage and Culture">Heritage and Culture</option>
-                            <option value="Nature and Landscape">Nature and Landscape</option>
-                            <option value="Wildlife and Safaris">Wildlife and Safaris</option>
-                            <option value="Wine and Food">Wine and Food</option>
-                        </select>
-                    </div>
-                    <div className="input-group">
-                        <select name="duration" required onChange={handleChange}>
-                            <option value="">Select Duration (days)</option>
-                            <option value="3">3 Days</option>
-                            <option value="5">5 Days</option>
-                            <option value="7">7 Days</option>
-                            <option value="10">10 Days</option>
-                            <option value="14">14 Days</option>
-                        </select>
-                    </div>
-                    <div className="input-group">
-                        <input name="travelDate" type="date" required onChange={handleChange} />
-                    </div>
-                    <div className="input-group">
-                        <select name="numberOfTravelers" required onChange={handleChange}>
-                            <option value="">Number of Travelers</option>
-                            <option value="1">1 Traveler</option>
-                            <option value="2">2 Travelers</option>
-                            <option value="3">3 Travelers</option>
-                            <option value="4">4 Travelers</option>
-                            <option value="5">5 Travelers</option>
-                            <option value="6">6 Travelers</option>
-                            <option value="7+">7+ Travelers</option>
-                        </select>
-                    </div>
-                    <div className="input-group">
-                        <textarea name="comment" placeholder="Additional Comments" onChange={handleChange}></textarea>
-                    </div>
-                    <div className="input-group">
-                        <button className='submit-btn btn' type="submit">Submit Enquiry</button>
-                    </div>
-                </form>
+
+                    <Form.Item name="comment">
+                        <Input.TextArea rows={4} placeholder="Additional Comments" />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button loading={loading} htmlType="submit" className="submit-btn">
+                            Submit Enquiry
+                        </Button>
+                    </Form.Item>
+                </Form>
             </div>
         </section>
     );
-}
+};
 
 export default CreateTrip;

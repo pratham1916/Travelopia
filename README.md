@@ -5,10 +5,23 @@ Travilopia is your all-in-one travel companion, offering seamless solutions for 
 - User authentication (login/signup functionality)
 - Responsive design for mobile and desktop devices
 
+## Admin Credential
+
+***email -*** admin@gmail.com
+***password -*** admin
+
+## Preview Images
+![Screenshot 2024-05-09 113351](https://github.com/pratham1916/Travelopia/assets/120631770/ab0f6ad5-9107-4108-a36e-4a9b0a48fc5b)
+![Screenshot 2024-05-09 113426](https://github.com/pratham1916/Travelopia/assets/120631770/c1c71b9b-d82c-4134-b7ef-ce53f6561752)
+![Screenshot 2024-05-09 113503](https://github.com/pratham1916/Travelopia/assets/120631770/94d055a8-ba6e-4cf1-b543-b28404f51080)
+![Screenshot 2024-05-09 113800](https://github.com/pratham1916/Travelopia/assets/120631770/9bd96387-56ac-4318-bb63-16539be95a25)
+![Screenshot 2024-05-09 113653](https://github.com/pratham1916/Travelopia/assets/120631770/c077fe68-6889-46f5-ba75-bdb8380a69e9)
+
+
 ## Tech Stack
 This section lists the technologies used in this project. Detail each technology used for the frontend, backend, and any other services or tools. For example:
 
-- **Frontend:** React, TypeScript, Antd Design
+- **Frontend:** React, TypeScript, Ant Design
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
   
